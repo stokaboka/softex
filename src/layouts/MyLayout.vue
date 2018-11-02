@@ -8,13 +8,13 @@
           <div slot="subtitle">Running on Quasar v{{ $q.version }}</div>
         </q-toolbar-title>
 
-        <q-btn glossy color="primary" icon="home" label="Home" aria-label="Home">
+        <q-btn glossy color="primary" icon="home" label="Home" aria-label="Home" @click.native="openURL('/')">
           <q-tooltip>show home page</q-tooltip>
         </q-btn>
-        <q-btn glossy color="primary" label="About Us" aria-label="About Us">
+        <q-btn glossy color="primary" label="About Us" aria-label="About Us" @click.native="openURL('about')">
           <q-tooltip>short story about our company</q-tooltip>
         </q-btn>
-        <q-btn glossy color="primary" icon="mail" label="Contact Us" aria-label="Contact Us">
+        <q-btn glossy color="primary" icon="mail" label="Contact Us" aria-label="Contact Us" @click.native="openURL('contact')">
           <q-tooltip>write to us!</q-tooltip>
         </q-btn>
 
@@ -37,6 +37,8 @@
 
 <script>
 
+import { openURL } from 'quasar'
+
 export default {
   name: 'MyLayout',
   data () {
@@ -44,6 +46,7 @@ export default {
     }
   },
   methods: {
+    openURL
   }
 }
 </script>
