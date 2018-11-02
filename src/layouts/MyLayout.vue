@@ -8,15 +8,21 @@
           <div slot="subtitle">Running on Quasar v{{ $q.version }}</div>
         </q-toolbar-title>
 
-        <q-btn glossy color="primary" icon="home" label="Home" aria-label="Home" @click.native="openURL('/')">
-          <q-tooltip>show home page</q-tooltip>
-        </q-btn>
-        <q-btn glossy color="primary" label="About Us" aria-label="About Us" @click.native="openURL('about')">
-          <q-tooltip>short story about our company</q-tooltip>
-        </q-btn>
-        <q-btn glossy color="primary" icon="mail" label="Contact Us" aria-label="Contact Us" @click.native="openURL('contact')">
-          <q-tooltip>write to us!</q-tooltip>
-        </q-btn>
+        <q-btn-group>
+
+          <q-btn glossy color="primary" icon="home" label="Home" aria-label="Home" to="/">
+            <q-tooltip>show home page</q-tooltip>
+          </q-btn>
+
+          <q-btn glossy color="primary" label="About Us" aria-label="About Us" to="/about">
+            <q-tooltip>short story about our company</q-tooltip>
+          </q-btn>
+
+          <q-btn glossy color="primary" icon="mail" label="Contact Us" aria-label="Contact Us" to="/contact">
+            <q-tooltip>write to us!</q-tooltip>
+          </q-btn>
+
+        </q-btn-group>
 
       </q-toolbar>
     </q-layout-header>
