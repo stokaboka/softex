@@ -1,9 +1,5 @@
 export default {
-  name: '',
-  phone: '',
-  message: '',
-
+  images: [],
   result: '',
   error: ''
-
 }

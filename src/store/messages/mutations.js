@@ -10,4 +10,20 @@ const setMessage = (state, message) => {
   state.message = message
 }
 
-export {setName, setPhone, setMessage}
+const setResult = (state, result) => {
+  state.result = result
+  state.error = ''
+}
+
+const setError = (state, error) => {
+  state.result = 'error'
+  state.error = error
+}
+
+const setMessageObj = (state, messageObj) => {
+  state.name = messageObj.name
+  state.phone = messageObj.phone
+  state.message = messageObj.message
+}
+
+export {setName, setPhone, setMessage, setMessageObj, setResult, setError}

@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-const sendMessage = ({ commit }, message) => {
-  return axios.get('statics/api/send.json')
+const loadImagesList = ({ commit }) => {
+  return axios.get('statics/api/images.json')
     .then(response => {
-      commit('setMessageObj', message)
+      commit('setImages', response.data)
       commit('setResult', 'OK')
     })
     .catch(error => {
@@ -11,4 +11,4 @@ const sendMessage = ({ commit }, message) => {
     })
 }
 
-export {sendMessage}
+export {loadImagesList}
