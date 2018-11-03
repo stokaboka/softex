@@ -14,7 +14,7 @@
             <q-tooltip>show home page</q-tooltip>
           </q-btn>
 
-          <q-btn glossy color="primary" label="About Us" aria-label="About Us" to="/about">
+          <q-btn glossy color="primary" icon="help_outline" label="About Us" aria-label="About Us" to="/about">
             <q-tooltip>short story about our company</q-tooltip>
           </q-btn>
 

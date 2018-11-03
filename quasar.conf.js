@@ -54,8 +54,6 @@ module.exports = function (ctx) {
         'QBtn',
         'QBtnGroup',
         'QIcon',
-        'QList',
-        'QListHeader',
         'QItem',
         'QItemMain',
         'QItemSide',
@@ -66,7 +64,10 @@ module.exports = function (ctx) {
         'QCardMain',
         'QCardMedia',
         'QCardSeparator',
-        'QCardActions'
+        'QCardActions',
+        'QInnerLoading',
+        'QSpinner',
+        'QSpinnerMat'
       ],
       directives: [
         'Ripple'
@@ -74,7 +75,14 @@ module.exports = function (ctx) {
       // Quasar plugins
       plugins: [
         'Notify'
-      ]
+      ],
+      config: {
+        notify: {
+          timeout: 3000,
+          textColor: 'white',
+          position: 'bottom-right'
+        }
+      }
       // iconSet: ctx.theme.mat ? 'material-icons' : 'ionicons'
       // i18n: 'de' // Quasar language
     },

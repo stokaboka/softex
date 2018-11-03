@@ -1,5 +1,5 @@
 export default {
-  name: '999',
+  name: '',
   phone: '',
   message: ''
 }

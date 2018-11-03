@@ -1,9 +1,10 @@
 <template>
+
   <q-page padding class="docs-input row justify-center">
 
     <form @submit.prevent="submit">
 
-      <q-card inline  >
+      <q-card  class="q-pa-lg card-message" >
         <q-card-title>
           Send message
           <span slot="subtitle">write to us and we will contact you</span>
@@ -29,13 +30,14 @@
 
           <q-field
             icon="phone"
-            :count="11"
+            :count="14"
             :error="$v.phone.$error"
             error-label="Please enter a valid phone number."
             helper="Enter phone number"
           >
             <q-input
               v-model="phone"
+              v-mask="phoneMask"
               @blur="$v.phone.$touch"
               float-label="Phone" >
             </q-input>
@@ -52,9 +54,7 @@
               v-model="message"
               @blur="$v.message.$touch"
               float-label="Message"
-              type="textarea"
-              :min-height="50"
-              :max-height="150">
+              type="textarea">
             </q-input>
           </q-field>
       </q-card-main>
@@ -64,9 +64,9 @@
         <q-card-actions>
           <q-btn  color="primary" label="Submit" type="submit" :disabled="submitStatus === 'PENDING'"></q-btn>
           <q-btn  label="Clear" @click="clearMessageForm" :disabled="submitStatus === 'OK'"></q-btn>
-          <p class="typo__p" v-if="submitStatus === 'OK'">Thanks for your submission!</p>
-          <p class="typo__p" v-if="submitStatus === 'ERROR'">Please fill the form correctly.</p>
-          <p class="typo__p" v-if="submitStatus === 'PENDING'">Sending...</p>
+
+          <q-spinner-mat v-if="submitStatus === 'PENDING'" class="float-right" size="36px" color="primary"></q-spinner-mat>
+
         </q-card-actions>
 
     </q-card>
@@ -77,23 +77,22 @@
 
 <script>
 
-import { required, numeric, minLength, maxLength } from 'vuelidate/lib/validators'
+import { required, minLength, maxLength } from 'vuelidate/lib/validators'
 import {createNamespacedHelpers} from 'vuex'
+import {mask} from 'vue-the-mask'
 const { mapActions } = createNamespacedHelpers('messages')
 
 export default {
   name: 'ContactUsPage',
+  directives: {mask},
   data () {
     return {
-      // name: '',
-      // phone: '',
-      // message: '',
+      phoneMask: '# ###-###-####',
       submitStatus: null
     }
   },
 
   computed: {
-    // ...mapState(['phone', 'message']),
     name: {
       get () {
         return this.$store.state.messages.name
@@ -130,9 +129,8 @@ export default {
 
     phone: {
       required,
-      numeric,
-      minLength: minLength(11),
-      maxLength: maxLength(11)
+      minLength: minLength(14),
+      maxLength: maxLength(14)
     },
 
     message: {
@@ -151,6 +149,7 @@ export default {
       this.$v.$touch()
       if (this.$v.$invalid) {
         this.submitStatus = 'ERROR'
+        this.showNotification('negative', 'Please fill the form correctly', '')
       } else {
         this.submitStatus = 'PENDING'
         this.sendMessage({
@@ -159,9 +158,11 @@ export default {
           message: this.message
         }).then(() => {
           this.submitStatus = 'OK'
+          this.showNotification('blue', 'Message sent', 'Thanks for contacting')
         }).catch((e) => {
           console.log(e)
           this.submitStatus = 'ERROR'
+          this.showNotification('negative', 'Network error', 'Send message lather...')
         })
       }
     },
@@ -171,6 +172,10 @@ export default {
       this.phone = ''
       this.message = ''
       this.$v.$reset()
+    },
+
+    showNotification (color, message, detail) {
+      this.$q.notify({ color, message, detail })
     }
 
   }
@@ -179,4 +184,7 @@ export default {
 </script>
 
 <style>
+  .card-message {
+    min-width: 50vw;
+  }
 </style>
