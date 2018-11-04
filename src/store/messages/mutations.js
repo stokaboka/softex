@@ -26,4 +26,12 @@ const setMessageObj = (state, messageObj) => {
   state.message = messageObj.message
 }
 
-export {setName, setPhone, setMessage, setMessageObj, setResult, setError}
+const initialiseStore = (state) => {
+  if (localStorage.getItem('softex_store_messages')) {
+    let savedState = JSON.parse(localStorage.getItem('softex_store_messages'))
+    state.name = savedState.name
+    state.phone = savedState.phone
+  }
+}
+
+export {setName, setPhone, setMessage, setMessageObj, setResult, setError, initialiseStore}

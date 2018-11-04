@@ -63,7 +63,7 @@
 
         <q-card-actions>
           <q-btn  color="primary" label="Submit" type="submit" :disabled="submitStatus === 'PENDING'"></q-btn>
-          <q-btn  label="Clear" @click="clearMessageForm" :disabled="submitStatus === 'OK'"></q-btn>
+          <q-btn  label="Clear" @click="clearMessageForm"></q-btn>
 
           <q-spinner-mat v-if="submitStatus === 'PENDING'" class="float-right" size="36px" color="primary"></q-spinner-mat>
 
@@ -178,8 +178,8 @@ export default {
     },
 
     clearMessageForm () {
-      this.name = ''
-      this.phone = ''
+      // this.name = ''
+      // this.phone = ''
       this.message = ''
       this.$v.$reset()
     },

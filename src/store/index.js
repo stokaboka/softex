@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import messages from './messages'
 import gallery from './gallery'
+import {localStoragePlugin} from './plugins'
 
 Vue.use(Vuex)
 
@@ -17,6 +18,9 @@ export default function (/* { ssrContext } */) {
       messages,
       gallery
     },
+    plugins: [
+      localStoragePlugin
+    ],
     strict: process.env.NODE_ENV !== 'production'
   })
 

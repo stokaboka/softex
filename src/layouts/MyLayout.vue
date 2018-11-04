@@ -47,13 +47,20 @@ import { openURL } from 'quasar'
 
 export default {
   name: 'MyLayout',
+
+  beforeCreate () {
+    this.$store.commit('messages/initialiseStore')
+  },
+
   data () {
     return {
     }
   },
+
   methods: {
     openURL
   }
+
 }
 </script>
 
