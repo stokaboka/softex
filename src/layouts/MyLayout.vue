@@ -32,18 +32,10 @@
       </router-view>
     </q-page-container>
 
-    <!--<q-layout-footer color="primary">-->
-    <!--<q-toolbar-title>-->
-    <!--Mapper-->
-    <!--</q-toolbar-title>-->
-    <!--</q-layout-footer>-->
-
   </q-layout>
 </template>
 
 <script>
-
-import { openURL } from 'quasar'
 
 export default {
   name: 'MyLayout',
@@ -58,7 +50,6 @@ export default {
   },
 
   methods: {
-    openURL
   }
 
 }
