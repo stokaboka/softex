@@ -35,6 +35,8 @@ export default {
   }
 
   .img-demo {
-    width: 100rem;
+    width: 100%;
+    position: relative;
+    text-align: center;
   }
 </style>
