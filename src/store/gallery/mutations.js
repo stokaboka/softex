@@ -1,7 +1,5 @@
 const setImages = (state, images) => {
   state.images = images
-  console.log('images')
-  console.log(images)
 }
 
 const setResult = (state, result) => {
