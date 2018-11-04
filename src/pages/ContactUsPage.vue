@@ -80,7 +80,7 @@
 import { required, minLength, maxLength } from 'vuelidate/lib/validators'
 import {createNamespacedHelpers} from 'vuex'
 import {mask} from 'vue-the-mask'
-const { mapActions } = createNamespacedHelpers('messages')
+const { mapState, mapActions } = createNamespacedHelpers('messages')
 
 export default {
   name: 'ContactUsPage',
@@ -117,6 +117,16 @@ export default {
       },
       set (value) {
         this.$store.commit('messages/setMessage', value)
+      }
+    },
+
+    ...mapState([ 'error' ])
+  },
+
+  watch: {
+    error (val) {
+      if (val) {
+        this.showNotification('negative', 'Network error', val)
       }
     }
   },

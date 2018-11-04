@@ -79,12 +79,24 @@ export default {
       })
     },
 
-    ...mapActions([ 'loadImagesList' ])
+    ...mapActions([ 'loadImagesList' ]),
+
+    showNotification (color, message, detail) {
+      this.$q.notify({ color, message, detail })
+    }
 
   },
 
   computed: {
-    ...mapState([ 'images' ])
+    ...mapState([ 'images', 'error' ])
+  },
+
+  watch: {
+    error (val) {
+      if (val) {
+        this.showNotification('negative', 'Network error', val.message)
+      }
+    }
   }
 }
 </script>
